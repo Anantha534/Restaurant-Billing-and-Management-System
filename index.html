@@ -1,21 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Restaurant App</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Restaurant Billing System</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-    <h1>Restaurant Ordering System</h1>
+  <nav>
+    <h1>🍽️ Restaurant Billing System</h1>
+    <span class="nav-subtitle">Food Paradise</span>
+  </nav>
 
-    <h2 id="count">0</h2>
+  <div class="container">
+    <h2>Welcome to Food Paradise</h2>
+    <p>Fresh meals, served fast. Order straight from your table.</p>
+    <button id="orderBtn">Order Now</button>
+  </div>
 
-    <button id="increaseBtn">
-        Increase
-    </button>
+  <section class="menu-section">
+    <h3>Popular Items</h3>
+    <div class="menu-grid">
+      <div class="menu-card" data-name="Classic Burger" data-price="199">
+        <div class="item-icon">🍔</div>
+        <div class="item-name">Classic Burger</div>
+        <div class="item-desc">Juicy beef patty, lettuce, cheese</div>
+        <div class="item-price">₹199</div>
+      </div>
+      <div class="menu-card" data-name="Margherita Pizza" data-price="349">
+        <div class="item-icon">🍕</div>
+        <div class="item-name">Margherita Pizza</div>
+        <div class="item-desc">Fresh mozzarella, basil, tomato</div>
+        <div class="item-price">₹349</div>
+      </div>
+      <div class="menu-card" data-name="Pasta Alfredo" data-price="279">
+        <div class="item-icon">🍝</div>
+        <div class="item-name">Pasta Alfredo</div>
+        <div class="item-desc">Creamy white sauce, parmesan</div>
+        <div class="item-price">₹279</div>
+      </div>
+      <div class="menu-card" data-name="Veg Wrap" data-price="149">
+        <div class="item-icon">🌯</div>
+        <div class="item-name">Veg Wrap</div>
+        <div class="item-desc">Grilled veggies, mint chutney</div>
+        <div class="item-price">₹149</div>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <!-- Order Modal -->
+  <div id="modalOverlay" class="modal-overlay hidden">
+    <div class="modal">
+      <h3>Your Order</h3>
+      <p id="orderCount">No items added yet.</p>
+      <div id="orderList"></div>
+      <div id="orderTotal" class="order-total"></div>
+      <div class="modal-actions">
+        <button id="cancelBtn">Cancel</button>
+        <button id="confirmBtn" class="btn-confirm">Place Order</button>
+      </div>
+    </div>
+  </div>
 
+  <script src="script.js"></script>
 </body>
 </html>
