@@ -1,68 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Restaurant Billing System</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anantha's Kitchen | Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <div class="left-panel">
+            <h1>🍽️ Anantha's Kitchen</h1>
+            <p>Smart Restaurant Management System</p>
+        </div>
 
-  <nav>
-    <h1>🍽️ Restaurant Billing System</h1>
-    <span class="nav-subtitle">Food Paradise</span>
-  </nav>
+        <div class="login-box">
+            <h2>Login</h2>
 
-  <div class="container">
-    <h2>Welcome to Food Paradise</h2>
-    <p>Fresh meals, served fast. Order straight from your table.</p>
-    <button id="orderBtn">Order Now</button>
-  </div>
+            <form id="login-form" novalidate>
+                <label for="email" class="visually-hidden">Email</label>
+                <input type="email" id="email" name="email" placeholder="you@restaurant.com" required>
 
-  <section class="menu-section">
-    <h3>Popular Items</h3>
-    <div class="menu-grid">
-      <div class="menu-card" data-name="Classic Burger" data-price="199">
-        <div class="item-icon">🍔</div>
-        <div class="item-name">Classic Burger</div>
-        <div class="item-desc">Juicy beef patty, lettuce, cheese</div>
-        <div class="item-price">₹199</div>
-      </div>
-      <div class="menu-card" data-name="Margherita Pizza" data-price="349">
-        <div class="item-icon">🍕</div>
-        <div class="item-name">Margherita Pizza</div>
-        <div class="item-desc">Fresh mozzarella, basil, tomato</div>
-        <div class="item-price">₹349</div>
-      </div>
-      <div class="menu-card" data-name="Pasta Alfredo" data-price="279">
-        <div class="item-icon">🍝</div>
-        <div class="item-name">Pasta Alfredo</div>
-        <div class="item-desc">Creamy white sauce, parmesan</div>
-        <div class="item-price">₹279</div>
-      </div>
-      <div class="menu-card" data-name="Veg Wrap" data-price="149">
-        <div class="item-icon">🌯</div>
-        <div class="item-name">Veg Wrap</div>
-        <div class="item-desc">Grilled veggies, mint chutney</div>
-        <div class="item-price">₹149</div>
-      </div>
+                <label for="password" class="visually-hidden">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    <button type="button" id="toggle-password" class="toggle-password-btn" aria-label="Show password">👁️</button>
+                </div>
+
+                <p id="error-message" class="error-message"></p>
+
+                <button type="submit">Access Dashboard</button>
+            </form>
+        </div>
     </div>
-  </section>
 
-  <!-- Order Modal -->
-  <div id="modalOverlay" class="modal-overlay hidden">
-    <div class="modal">
-      <h3>Your Order</h3>
-      <p id="orderCount">No items added yet.</p>
-      <div id="orderList"></div>
-      <div id="orderTotal" class="order-total"></div>
-      <div class="modal-actions">
-        <button id="cancelBtn">Cancel</button>
-        <button id="confirmBtn" class="btn-confirm">Place Order</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
