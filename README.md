@@ -19,3 +19,6 @@ A web application that allows restaurant staff (Admin) to manage the menu, table
 
 ## Team Workflow
 Daily progress and feature development are being tracked through GitHub commits.
+
+Note:
+We did used some code from stack overflow,existing libraries and code (like json part) and did  got guidance about how to make websites and some tricks to create beautiful websites to make it easy for us to create this website
