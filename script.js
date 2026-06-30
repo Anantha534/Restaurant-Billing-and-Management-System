@@ -1,8 +1,4 @@
-/* ============================================
-   Restaurant Billing System — Main Script
-   Uses Bootstrap 5 Modal/Toast APIs
-   Auth-gated with per-user order persistence
-   ============================================ */
+// This part was done by Arvind Ramakrishnan in collaboration with Anantha Krishna
 
 // ── Auth Gate ─────────────────────────────────
 if (!auth.isLoggedIn()) {
