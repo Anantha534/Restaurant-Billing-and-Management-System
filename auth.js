@@ -1,3 +1,4 @@
+// This part was done by Anantha 
 class AuthManager {
   constructor() {
     this.USERS_KEY = 'fp_users';
