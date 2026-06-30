@@ -17,6 +17,7 @@ class AuthManager {
       });
     }
   }
+  
 
   async hashPassword(pw) {
     const data = new TextEncoder().encode(pw + '_fp_salt_2026');
