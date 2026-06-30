@@ -1,68 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Restaurant Billing System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anantha's Kitchen — Restaurant Billing System</title>
+  <meta name="description" content="Anantha's Kitchen — Browse menu, place orders, and manage your dining experience." />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+  <!-- SF Pro fallback (Inter) for Apple Aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <nav>
-    <h1>🍽️ Restaurant Billing System</h1>
-    <span class="nav-subtitle">Food Paradise</span>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand sticky-top border-bottom nav-blur">
+    <div class="container-fluid px-3 px-md-4">
+      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="#">
+        🍽️ <span>Anantha's Kitchen</span>
+        <small class="text-muted d-none d-sm-inline" style="font-size:0.7rem;font-weight:500;">Billing System</small>
+      </a>
+      <div class="d-flex align-items-center gap-2" id="nav-right">
+        <!-- Populated by JS -->
+      </div>
+    </div>
   </nav>
 
-  <div class="container">
-    <h2>Welcome to Food Paradise</h2>
-    <p>Fresh meals, served fast. Order straight from your table.</p>
-    <button id="orderBtn">Order Now</button>
+  <!-- Main Content -->
+  <div class="container-fluid px-3 px-md-4" style="max-width:960px;">
+
+    <!-- Welcome Section -->
+    <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between py-4 gap-3">
+      <div>
+        <h4 class="fw-bold mb-1" id="welcome-heading">Welcome!</h4>
+        <p class="text-muted mb-0 small">Fresh meals, served fast. Order straight from your table.</p>
+      </div>
+      <button class="btn btn-accent d-flex align-items-center gap-2 fw-semibold px-4" id="orderBtn">
+        <i class="bi bi-cart3"></i> Order Now
+      </button>
+    </div>
+
+    <!-- Menu Section -->
+    <section class="mb-4">
+      <div class="d-flex justify-content-between align-items-baseline mb-3">
+        <h6 class="text-uppercase text-muted fw-bold small letter-space mb-0">Popular Items</h6>
+        <span class="badge bg-secondary-subtle text-secondary-emphasis" id="menu-count">8 items</span>
+      </div>
+
+      <div class="row g-3" id="menu-grid"></div>
+    </section>
+
+    <!-- Order History (Customer) -->
+    <section class="mb-5 border-top pt-4" id="history-section" style="display:none;">
+      <div class="d-flex justify-content-between align-items-baseline mb-3">
+        <h6 class="text-uppercase text-muted fw-bold small letter-space mb-0">Your Order History</h6>
+        <span class="badge bg-secondary-subtle text-secondary-emphasis" id="history-count">0 orders</span>
+      </div>
+      <div id="history-list"></div>
+      <div class="text-center py-4 text-muted" id="history-empty" style="display:none;">
+        <div style="font-size:2rem;opacity:0.4;">📋</div>
+        <p class="small mt-2">No orders yet. Start ordering from the menu above!</p>
+      </div>
+    </section>
+
+    <!-- Admin: All Orders -->
+    <section class="mb-5 border-top pt-4" id="admin-section" style="display:none;">
+      <div class="d-flex justify-content-between align-items-baseline mb-3">
+        <h6 class="fw-bold mb-0"><i class="bi bi-bar-chart me-1"></i> All Customer Orders</h6>
+        <span class="badge bg-secondary-subtle text-secondary-emphasis" id="admin-count">0 orders</span>
+      </div>
+      <div id="admin-list"></div>
+    </section>
   </div>
 
-  <section class="menu-section">
-    <h3>Popular Items</h3>
-    <div class="menu-grid">
-      <div class="menu-card" data-name="Classic Burger" data-price="199">
-        <div class="item-icon">🍔</div>
-        <div class="item-name">Classic Burger</div>
-        <div class="item-desc">Juicy beef patty, lettuce, cheese</div>
-        <div class="item-price">₹199</div>
-      </div>
-      <div class="menu-card" data-name="Margherita Pizza" data-price="349">
-        <div class="item-icon">🍕</div>
-        <div class="item-name">Margherita Pizza</div>
-        <div class="item-desc">Fresh mozzarella, basil, tomato</div>
-        <div class="item-price">₹349</div>
-      </div>
-      <div class="menu-card" data-name="Pasta Alfredo" data-price="279">
-        <div class="item-icon">🍝</div>
-        <div class="item-name">Pasta Alfredo</div>
-        <div class="item-desc">Creamy white sauce, parmesan</div>
-        <div class="item-price">₹279</div>
-      </div>
-      <div class="menu-card" data-name="Veg Wrap" data-price="149">
-        <div class="item-icon">🌯</div>
-        <div class="item-name">Veg Wrap</div>
-        <div class="item-desc">Grilled veggies, mint chutney</div>
-        <div class="item-price">₹149</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Order Modal -->
-  <div id="modalOverlay" class="modal-overlay hidden">
-    <div class="modal">
-      <h3>Your Order</h3>
-      <p id="orderCount">No items added yet.</p>
-      <div id="orderList"></div>
-      <div id="orderTotal" class="order-total"></div>
-      <div class="modal-actions">
-        <button id="cancelBtn">Cancel</button>
-        <button id="confirmBtn" class="btn-confirm">Place Order</button>
+  <!-- Order Modal (Bootstrap) -->
+  <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="orderModalLabel"><i class="bi bi-bag me-2"></i>Your Order</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-muted small" id="orderCount">No items added yet.</p>
+          <div id="orderList"></div>
+          <div class="text-end fw-bold text-accent mt-3" id="orderTotal" style="font-size:1.1rem;"></div>
+        </div>
+        <div class="modal-footer d-flex gap-2">
+          <button type="button" class="btn btn-sm btn-outline-danger" id="clearCartBtn">
+            <i class="bi bi-trash3 me-1"></i>Clear
+          </button>
+          <div class="flex-grow-1"></div>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-accent fw-semibold" id="confirmBtn">
+            <i class="bi bi-check-lg me-1"></i>Place Order
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- Toast Container -->
+  <div class="toast-container position-fixed top-0 end-0 p-3" id="toast-area" style="z-index:9999;"></div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="auth.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
