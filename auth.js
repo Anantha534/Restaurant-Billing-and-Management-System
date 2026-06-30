@@ -1,4 +1,3 @@
-/* Auth Manager — Restaurant Billing System */
 class AuthManager {
   constructor() {
     this.USERS_KEY = 'fp_users';
