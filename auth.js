@@ -6,6 +6,7 @@ class AuthManager {
     this.seedAdmin();
   }
 
+  
   seedAdmin() {
     const users = this.getUsers();
     if (!users.some(u => u.role === 'admin')) {
