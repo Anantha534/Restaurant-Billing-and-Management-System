@@ -268,6 +268,9 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           <div class="small text-muted mb-1">${escapeHtml(items)}</div>
           <div class="fw-bold text-accent">₹${order.total}</div>
+          <div class="small mt-1">
+          Status: <span class="badge bg-warning text-dark">${order.status}</span>
+          </div>
         </div>
       `;
     }).join('');

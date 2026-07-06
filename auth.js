@@ -72,7 +72,7 @@ class AuthManager {
   saveOrder(orderData) {
     const user = this.getCurrentUser();
     if (!user) return false;
-    const order = { id: 'ord_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 4), items: orderData.items, total: orderData.total, type: orderData.type || 'dine-in', status: ''Pending', placedAt: new Date().toISOString() };
+    const order = { id: 'ord_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 4), items: orderData.items, total: orderData.total, type: orderData.type || 'dine-in', status: 'Pending', placedAt: new Date().toISOString() };
     const key = this.ORDERS_PREFIX + user.userId, orders = this.getOrders();
     localStorage.setItem(key, JSON.stringify([...orders, order]));
     return order;
