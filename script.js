@@ -103,18 +103,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ── Render Menu ─────────────────────────────
-  const menuData = [
-    { name: 'Classic Burger', icon: '🍔', price: 199, desc: 'Juicy beef patty, lettuce, cheese' },
-    { name: 'Margherita Pizza', icon: '🍕', price: 349, desc: 'Fresh mozzarella, basil, tomato' },
-    { name: 'Pasta Alfredo', icon: '🍝', price: 279, desc: 'Creamy white sauce, parmesan' },
-    { name: 'Veg Wrap', icon: '🌯', price: 149, desc: 'Grilled veggies, mint chutney' },
-    { name: 'Chicken Biryani', icon: '🍚', price: 329, desc: 'Aromatic basmati, spiced chicken' },
-    { name: 'Masala Dosa', icon: '🥞', price: 129, desc: 'Crispy crepe, potato filling, chutneys' },
-    { name: 'Mango Lassi', icon: '🥭', price: 89, desc: 'Fresh mango, yogurt, cardamom' },
-    { name: 'Chocolate Brownie', icon: '🍫', price: 159, desc: 'Warm fudge, vanilla ice cream' }
-  ];
-
+  const menuData = loadMenu();
   const grid = document.getElementById('menu-grid');
+  const menuCount = document.getElementById('menu-count');
+
+  if (menuCount) {
+    menuCount.textContent = `${menuData.length} item${menuData.length !== 1 ? 's' : ''}`;
+  }
   if (grid) {
     grid.innerHTML = menuData.map(item => `
       <div class="col-6 col-md-4 col-lg-3">

@@ -6,53 +6,64 @@
   <title>Sign In — Anantha's Kitchen</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="login.css">
 </head>
 <body>
 
 <div class="login-split">
 
+  <!-- Left Panel -->
   <div class="left-panel">
 
-    <div class="brand-logo">
-      AK
-    </div>
-
-    <div class="brand-name">
-      Anantha's Kitchen
-    </div>
-
+    <div class="brand-logo">AK</div>
+    <div class="brand-name">Anantha's Kitchen</div>
     <div class="brand-desc">
-  A seamless restaurant experience.
-  Manage your orders, tables and menus —
-  all from one place.
-</div>
+      A seamless restaurant experience.<br>
+      Manage orders, tables, and menus —<br>
+      all from one place.
+    </div>
 
-<div class="chef-image-container">
-  <img src="chef.png" alt="Chef Logo" class="chef-image">
-</div>
+    <div class="chef-image-container">
+      <!-- If chef.png is missing, this shows a fallback emoji -->
+      <img src="chef.png" alt="Chef" class="chef-image"
+           onerror="this.style.display='none'; document.getElementById('chefFallback').style.display='block'">
+      <div id="chefFallback" style="display:none; font-size:5rem;">👨‍🍳</div>
+    </div>
 
-    <div class="testimonial">
-      <div class="testimonial-text">
-        "The system is very professional and user friendly."
-      </div>
+    <!-- Testimonial Slider -->
+    <div class="testimonials-area">
+      <div class="testimonial-track" id="testimonialTrack">
 
-      <div class="testimonial-author">
-        <div class="testimonial-avatar">D</div>
-
-        <div>
-          <div class="testimonial-name">
-            Deepan
+        <div class="testimonial">
+          <div class="testimonial-text">
+            The system is very professional and user friendly.
           </div>
-
-          <div class="testimonial-role">
-            Student, Easwari Engineering College
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">D</div>
+            <div>
+              <div class="testimonial-name">Deepan</div>
+              <div class="testimonial-role">Student, Easwari Engineering College</div>
+            </div>
           </div>
         </div>
+
+        <div class="testimonial">
+          <div class="testimonial-text">
+            Ordering is so smooth — everything just works perfectly.
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">A</div>
+            <div>
+              <div class="testimonial-name">Arvind</div>
+              <div class="testimonial-role">Developer, Team Member</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -63,157 +74,87 @@
 
   </div>
 
+  <!-- Right Panel -->
   <div class="right-panel">
-
     <div class="form-box">
-
       <div class="panel active" id="authPanel">
 
         <h2 id="authTitle">Welcome back</h2>
-
-        <p class="subtitle" id="authSubtitle">
-          Enter your details to sign in.
-        </p>
+        <p class="subtitle" id="authSubtitle">Enter your details to sign in.</p>
 
         <form id="authForm" novalidate>
 
+          <!-- Name (signup only) -->
           <div class="signup-only" style="display:none;">
             <div class="field-label">Full Name</div>
-
-            <input
-              type="text"
-              class="form-input"
-              id="authName"
-              placeholder="John Doe">
-
+            <input type="text" class="form-input" id="authName" placeholder="John Doe">
             <div class="error-text" id="authNameErr"></div>
           </div>
 
-          <div class="field-label">
-            Email Address
-          </div>
-
-          <input
-            type="email"
-            class="form-input"
-            id="authEmail"
-            placeholder="you@example.com">
-
+          <!-- Email -->
+          <div class="field-label">Email Address</div>
+          <input type="email" class="form-input" id="authEmail" placeholder="you@example.com">
           <div class="error-text" id="authEmailErr"></div>
 
+          <!-- Password -->
           <div class="field-label">
             Password
-            <a href="#" class="login-only">
-              Forgot password?
-            </a>
-
-            <a href="#"
-               class="suggest-link signup-only"
-               id="suggestPwdLink"
-               style="display:none;">
+            <a href="#" class="login-only" id="forgotPwdLink">Forgot password?</a>
+            <a href="#" class="suggest-link signup-only" id="suggestPwdLink" style="display:none;">
               Suggest strong password
             </a>
           </div>
-
-          <input
-            type="password"
-            class="form-input"
-            id="authPassword"
-            placeholder="••••••••">
-
+          <input type="password" class="form-input" id="authPassword" placeholder="••••••••">
           <div class="error-text" id="authPasswordErr"></div>
 
-          <div class="pwd-suggest-bar signup-only"
-               id="pwdSuggestBar"
-               style="display:none;">
-
+          <!-- Password suggestion bar (signup only) -->
+          <div class="pwd-suggest-bar signup-only" id="pwdSuggestBar" style="display:none;">
             <code id="pwdSuggestText">—</code>
-
-            <button type="button" id="pwdUseBtn">
-              Use
-            </button>
-
-            <button type="button" id="pwdRetryBtn">
-              ↻
-            </button>
-
+            <button type="button" id="pwdUseBtn">Use</button>
+            <button type="button" id="pwdRetryBtn">↻</button>
           </div>
 
+          <!-- Confirm password (signup only) -->
           <div class="signup-only" style="display:none;">
-            <div class="field-label">
-              Confirm Password
-            </div>
-
-            <input
-              type="password"
-              class="form-input"
-              id="authConfirm"
-              placeholder="Re-enter password">
-
+            <div class="field-label">Confirm Password</div>
+            <input type="password" class="form-input" id="authConfirm" placeholder="Re-enter password">
             <div class="error-text" id="authConfirmErr"></div>
           </div>
 
-          <button
-            type="submit"
-            class="btn-continue"
-            id="authBtn">
-
-            <span id="authBtnText">
-              Continue to Dashboard
-            </span>
-
-            <span class="login-only">
-              →
-            </span>
-
+          <button type="submit" class="btn-continue" id="authBtn">
+            <span id="authBtnText">Continue to Dashboard</span>
+            <span class="login-only">→</span>
           </button>
 
         </form>
 
-        <div class="auth-divider">
-          <span>or</span>
-        </div>
+        <div class="auth-divider"><span>or</span></div>
 
-        <button
-          type="button"
-          class="btn-passkey"
-          id="authPasskeyBtn">
-
-          <span id="passkeyText">
-            Sign in with Passkey
-          </span>
-
+        <button type="button" class="btn-passkey" id="authPasskeyBtn">
+          <i class="bi bi-fingerprint" style="font-size:1.1rem;"></i>
+          <span id="passkeyText">Sign in with Passkey</span>
         </button>
 
         <div class="trouble-link login-only">
-          <a href="#">
-            Having trouble signing in?
-          </a>
+          <a href="#">Having trouble signing in?</a>
         </div>
 
         <div class="tab-switch">
-          <span id="switchText">
-            Don't have an account?
-          </span>
-
-          <a href="#" id="switchAuthMode">
-            Sign up
-          </a>
+          <span id="switchText">Don't have an account?</span>
+          <a href="#" id="switchAuthMode"> Sign up</a>
         </div>
 
       </div>
-
     </div>
-
   </div>
 
 </div>
 
+<!-- Alert popup -->
 <div class="alert-popup" id="alertBox"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../auth.js"></script>
 <script src="login.js"></script>
-
 </body>
 </html>
